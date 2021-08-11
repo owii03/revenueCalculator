@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #fff;
+      font-family: 'Lato-Regular', Helvetica, Arial, sans-serif;
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+
+    h1 {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      background-color: #6358EC;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary:active {
+      background-color: #6b62eb;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+    }
+
+    .space {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Revenue Calculator</h1>
+
+  <div class="form-group">
+    <label for="DailyUsers">Daily active users</label>
+    <input type="text" class="form-control" id="dau" name="dau" aria-describedby="activeUsers"
+      placeholder="Enter the number of active users">
+  </div>
+  <div class="form-group">
+    <label for="Region">Region</label>
+    <select class="form-control" id="region" name="region" placeholder="Choose one of the regions">
+      <option value="eu">European Union</option>
+      <option value="us">United States</option>
+      <option value="others">Rest of the World</option>
+    </select>
+  </div>
+  <div class="center">
+    <button type="submit" class="btn btn-primary mb-2">Calculate</button>
+  </div>
+  <br />
+  <div class="space">
+    <p>Your expected monthly revenue :</p>
+    <label id='revenue'></label>
+  </div>
+</body>
+<script>
+  $(document).ready(function () {
+
+    $("button").click(function () {
+
+      var dau = $("#dau").val();
+      var region = $("#region").val();
+      var revenue = 0;
+
+      if (region == 'eu') {
+        revenue = dau / 1000 * 20
+      }
+      else if (region == 'us') {
+        revenue = dau / 1000 * 15
+      }
+      else {
+        revenue = dau / 1000 * 3
+      }
+
+      $("#revenue").text('$' + revenue.toFixed(2));
+
+    });
+  });
+</script>
+
+</html>
